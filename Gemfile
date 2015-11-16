@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'whenever', :require => false
 gem 'nokogiri'
 gem 'mysql2', '0.3.20'
 gem 'awesome_print'
