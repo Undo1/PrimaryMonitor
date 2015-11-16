@@ -12,6 +12,9 @@ $ ->
 
     return state
 
+  $("body").on 'click', '.reset_accum_total', ->
+    accum_changes = {}
+
   do f = -> 
     $.ajax
       url: '/update.json'
