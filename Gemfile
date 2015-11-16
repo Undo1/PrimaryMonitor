@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'nokogiri'
+gem 'mysql2'
 gem 'awesome_print'
 gem 'activerecord-import', :require => false
 
