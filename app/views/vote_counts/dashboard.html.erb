@@ -1,0 +1,26 @@
+<table class="table">
+  <tr class="header">
+    <th>#</th>
+    <th>User</th>
+    <th>Current Score</th>
+    <th>Last Change</th>
+    <th>Accum. Change (<a href="#">reset</a>)</th>
+  </tr>
+  <tbody>
+    <% @users.each_with_index do |user, index| %>
+      <tr style="<%= 'border-bottom:2px solid red;' if index + 1 == 10%>" id="<%= user.id %>">
+        <td class="place">
+          <%= index + 1 %>
+        </td>
+        <td>
+          <%= link_to user.display_name, user.link %>
+        </td>
+        <td class="current-score">
+          <%= user.current_score %>
+        </td>
+        <td class="last-change">0</td>
+        <td class="accum-change">0</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

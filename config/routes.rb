@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  root to: "vote_counts#dashboard"
+  get 'vote_counts/dashboard'
+  get 'update.json', to: 'vote_counts#update'
+
+  # resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
