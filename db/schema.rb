@@ -11,22 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109233944) do
+ActiveRecord::Schema.define(version: 20160330181711) do
+
+  create_table "elections", force: :cascade do |t|
+    t.string   "site_id",         limit: 255
+    t.integer  "election_number", limit: 4
+    t.string   "friendly_name",   limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string   "site_name",     limit: 255
+    t.string   "site_slug",     limit: 255
+    t.string   "site_base_url", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "users", force: :cascade do |t|
-    t.string   "link"
-    t.string   "display_name"
-    t.integer  "current_score"
-    t.string   "profile_image"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "link",          limit: 255
+    t.string   "display_name",  limit: 255
+    t.integer  "current_score", limit: 4
+    t.string   "profile_image", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "site_id",       limit: 4
+    t.integer  "election_id",   limit: 4
   end
 
   create_table "vote_counts", force: :cascade do |t|
-    t.integer  "score"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "score",       limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "election_id", limit: 4
   end
 
 end

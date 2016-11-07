@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  site_id: MyString
+  election_number: 1
+  friendly_name: MyString
+
+two:
+  site_id: MyString
+  election_number: 1
+  friendly_name: MyString

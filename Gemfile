@@ -1,13 +1,16 @@
 source 'https://rubygems.org'
 
+gem 'chartkick'
+gem 'groupdate'
 gem 'whenever', :require => false
 gem 'nokogiri'
-gem 'mysql2', '0.3.20'
+gem 'mysql2'
 gem 'awesome_print'
 gem 'activerecord-import', :require => false
+gem 'hirb', '~> 0.7.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '~5.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
