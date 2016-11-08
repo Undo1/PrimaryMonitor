@@ -12,6 +12,7 @@ module VoteCountsHelper
   end
 
   def self.fetch_votes
+
     url = 'http://stackoverflow.com/election/7?tab=primary&purpose=undosprimarymonitor'
 
     begin
