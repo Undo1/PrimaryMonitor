@@ -29,7 +29,7 @@ module VoteCountsHelper
 
         user = User.find_or_create_by(link: user_link)
         user.display_name = username
-        user.current_score = vote_count.content
+        user.current_score += rand(1..30)
 
         changed = user.changed? or user.new_record?
 
@@ -40,7 +40,7 @@ module VoteCountsHelper
       end
       VoteCount.import vote_counts
 
-      ActionCable.server.broadcast "vote_counts", vote_counts.map {|n| [n.user_id.to_s, n.score] }.to_h
+      ActionCable.server.broadcast "vote_counts", vote_counts.map {|n| [n.user_id.to_s, n.score] }.to_h if vote_counts.present?
 
       return true
 
