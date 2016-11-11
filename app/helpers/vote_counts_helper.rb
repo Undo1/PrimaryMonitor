@@ -21,8 +21,6 @@ module VoteCountsHelper
       vote_counts = []
 
       doc.css(".vote-count-post").each do |vote_count|
-        puts score = vote_count.content
-
         nomination_post = vote_count.parent.parent.parent.parent
 
         username_link = nomination_post.css(".user-details a").first
@@ -31,8 +29,7 @@ module VoteCountsHelper
 
         user = User.find_or_create_by(link: user_link)
         user.display_name = username
-        user.current_score += rand(2..60000)
-        # user.current_score = score
+        user.current_score += vote_count.content
 
         changed = user.changed? or user.new_record?
 
