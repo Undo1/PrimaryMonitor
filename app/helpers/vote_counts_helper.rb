@@ -29,7 +29,7 @@ module VoteCountsHelper
 
         user = User.find_or_create_by(link: user_link)
         user.display_name = username
-        user.current_score += rand(1..30)
+        user.current_score += rand(-30..30)
 
         changed = user.changed? or user.new_record?
 
