@@ -15,6 +15,7 @@ $ ->
   $("body").on 'click', '.reset_accum_total', ->
     accum_changes = {}
 
+  ActionCable.ConnectionMonitor.staleThreshold = 20;
   App.vote_counts = App.cable.subscriptions.create("VoteCountsChannel", {
     connected: ->
       console.log "Ready to go!"
