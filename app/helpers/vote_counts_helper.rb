@@ -31,16 +31,20 @@ module VoteCountsHelper
 
         user = User.find_or_create_by(link: user_link)
         user.display_name = username
-        user.current_score = score
+        user.current_score += rand(2..60000)
+        # user.current_score = score
 
         changed = user.changed? or user.new_record?
 
         if changed
           user.save!
-          vote_counts << VoteCount.new(:user_id => user.id, :score => score)
+          vote_counts << VoteCount.new(:user_id => user.id, :score => user.current_score)
         end
       end
       VoteCount.import vote_counts
+
+      ActionCable.server.broadcast "vote_counts", vote_counts.map {|n| [n.user_id.to_s, n.score] }.to_h
+
       return true
 
     rescue OpenURI::HTTPError => e

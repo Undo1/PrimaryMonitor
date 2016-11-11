@@ -8,7 +8,7 @@
   </tr>
   <tbody>
     <% @users.each_with_index do |user, index| %>
-      <tr style="<%= 'border-bottom:2px solid red;' if index + 1 == 10%>" id="<%= user.id %>">
+      <tr id="<%= user.id %>" class="candidate_row <%= 'danger_row' if index + 1 == 7 %>">
         <td class="place">
           <%= index + 1 %>
         </td>

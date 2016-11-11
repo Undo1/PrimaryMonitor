@@ -15,71 +15,77 @@ $ ->
   $("body").on 'click', '.reset_accum_total', ->
     accum_changes = {}
 
-  do f = -> 
-    $.ajax
-      url: '/update.json'
-      type: 'GET'
-      success: (data, status, response) ->
-        before_state = current_state()
+  App.vote_counts = App.cable.subscriptions.create("VoteCountsChannel", {
+    connected: ->
+      console.log "Ready to go!"
 
-        $.each data, (user_id, current_score) ->
-          element = $("#" + user_id + " .current-score")
-          element.text current_score
-        rows = ($("table").find('tr').sort (a, b) ->
-          current_score_a = $(a).find(".current-score").text()
-          current_score_b = $(b).find(".current-score").text()
+    received: (data) ->
+      console.log(data);
+      before_state = current_state()
 
-          if $(a).find("th").length > 0
-            current_score_a = 100000
+      $.each data, (user_id, current_score) ->
+        element = $("#" + user_id + " .current-score")
+        element.text current_score
+      rows = ($("table").find('tr').sort (a, b) ->
+        current_score_a = $(a).find(".current-score").text()
+        current_score_b = $(b).find(".current-score").text()
 
-          if $(b).find("th").length > 0
-            current_score_b = 100000
+        if $(a).find("th").length > 0
+          current_score_a = 1000000000000
 
-          return current_score_b - current_score_a)
+        if $(b).find("th").length > 0
+          current_score_b = 1000000000000
 
-        $("tr").remove()
+        return current_score_b - current_score_a)
 
-        $.each rows, (index, row) ->
-          $("table").append(row)
+      $("tr").remove()
 
-        places = $("table").find(".place")
+      $.each rows, (index, row) ->
+        $("table").append(row)
 
-        $.each places, (index, row) ->
-          $(row).html(index+1)
+      places = $("table").find(".place")
 
-        # Handle change tracking
+      $.each places, (index, row) ->
+        $(row).html(index+1)
 
-        after_state = current_state()
-        last_change = {}
+      # Move the red line
+      $(".danger_row").removeClass("danger_row")
+      $($("table tbody tr.candidate_row")[6]).addClass("danger_row")
 
-        for id, score of before_state
-          last_change[id] = after_state[id] - before_state[id]
+      # Handle change tracking
 
-          if accum_changes[id] == undefined
-            accum_changes[id] = 0
+      after_state = current_state()
+      last_change = {}
 
-          accum_changes[id] = accum_changes[id] + last_change[id]
+      for id, score of before_state
+        last_change[id] = after_state[id] - before_state[id]
 
-          $("tr#" + id).find(".last-change").text(last_change[id])
-          if last_change[id] < 0
-            $("tr#" + id).find('.last-change').addClass("danger")
-            $("tr#" + id).find('.last-change').removeClass("success")
-          else if last_change[id] > 0
-            $("tr#" + id).find('.last-change').addClass("success")
-            $("tr#" + id).find('.last-change').removeClass("danger")
-          else
-            $("tr#" + id).find('.last-change').removeClass("success")
-            $("tr#" + id).find('.last-change').removeClass("danger")
+        if accum_changes[id] == undefined
+          accum_changes[id] = 0
 
-          $("tr#" + id).find(".accum-change").text(accum_changes[id])
-          if accum_changes[id] < 0
-            $("tr#" + id).find('.accum-change').addClass("danger")
-            $("tr#" + id).find('.accum-change').removeClass("success")
-          else if accum_changes[id] > 0
-            $("tr#" + id).find('.accum-change').addClass("success")
-            $("tr#" + id).find('.accum-change').removeClass("danger")
-          else
-            $("tr#" + id).find('.accum-change').removeClass("success")
-            $("tr#" + id).find('.accum-change').removeClass("danger")
+        accum_changes[id] = accum_changes[id] + last_change[id]
 
-    setTimeout(arguments.callee, 5000)
+        $("tr#" + id).find(".last-change").text(last_change[id])
+        if last_change[id] < 0
+          $("tr#" + id).find('.last-change').addClass("danger")
+          $("tr#" + id).find('.last-change').removeClass("success")
+        else if last_change[id] > 0
+          $("tr#" + id).find('.last-change').addClass("success")
+          $("tr#" + id).find('.last-change').removeClass("danger")
+        else
+          $("tr#" + id).find('.last-change').removeClass("success")
+          $("tr#" + id).find('.last-change').removeClass("danger")
+
+        $("tr#" + id).find(".accum-change").text(accum_changes[id])
+        if accum_changes[id] < 0
+          $("tr#" + id).find('.accum-change').addClass("danger")
+          $("tr#" + id).find('.accum-change').removeClass("success")
+        else if accum_changes[id] > 0
+          $("tr#" + id).find('.accum-change').addClass("success")
+          $("tr#" + id).find('.accum-change').removeClass("danger")
+        else
+          $("tr#" + id).find('.accum-change').removeClass("success")
+          $("tr#" + id).find('.accum-change').removeClass("danger")
+    update: ->
+      return this.perform('update');
+  });

@@ -8,6 +8,7 @@ gem 'mysql2'
 gem 'awesome_print'
 gem 'activerecord-import', :require => false
 gem 'hirb', '~> 0.7.3'
+gem 'redis'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0'
@@ -57,5 +58,6 @@ group :development do
   gem 'capistrano-faster-assets'
   gem 'capistrano-upload-config'
   gem 'capistrano-passenger'
+  gem 'puma'
 end
 

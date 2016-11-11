@@ -118,6 +118,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -146,6 +147,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (11.3.0)
     rdoc (4.3.0)
+    redis (3.3.1)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -213,7 +215,9 @@ DEPENDENCIES
   jquery-rails
   mysql2
   nokogiri
+  puma
   rails (~> 5.0)
+  redis
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
@@ -224,4 +228,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.11.2
+   1.13.6
