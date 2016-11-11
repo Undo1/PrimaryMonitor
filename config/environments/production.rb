@@ -76,4 +76,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Make ActionCable work
+  config.action_cable.allowed_request_origins = ['https://primaries.erwaysoftware.com', 'http://primaries.erwaysoftware.com']
 end
