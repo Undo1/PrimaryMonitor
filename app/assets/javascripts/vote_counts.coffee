@@ -51,7 +51,7 @@ $ ->
 
       # Move the red line
       $(".danger_row").removeClass("danger_row")
-      $($("table tbody tr.candidate_row")[6]).addClass("danger_row")
+      $($("table tbody tr.candidate_row")[9]).addClass("danger_row")
 
       # Handle change tracking
 
