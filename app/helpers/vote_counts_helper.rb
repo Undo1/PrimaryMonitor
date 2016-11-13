@@ -12,7 +12,7 @@ module VoteCountsHelper
   end
 
   def self.fetch_votes
-    url = 'http://stackoverflow.com/election/7?tab=primary&purpose=undosprimarymonitor'
+    url = 'http://stackoverflow.com/election/8?tab=primary&purpose=undosprimarymonitor'
 
     begin
       file = open(url)
@@ -29,7 +29,7 @@ module VoteCountsHelper
 
         user = User.find_or_create_by(link: user_link)
         user.display_name = username
-        user.current_score = (user.current_score || 0) + rand(-30..30)
+        user.current_score = vote_count.content
 
         changed = user.changed? or user.new_record?
 
