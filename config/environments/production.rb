@@ -78,5 +78,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Make ActionCable work
-  config.action_cable.allowed_request_origins = ['https://primaries.erwaysoftware.com', 'http://primaries.erwaysoftware.com', 'https://soprimaries.erwaysoftware.com', 'http://soprimaries.erwaysoftware.com']
+  config.action_cable.allowed_request_origins = ['https://primaries.erwaysoftware.com', 'http://primaries.erwaysoftware.com', 'https://soprimaries.erwaysoftware.com', 'http://soprimaries.erwaysoftware.com', 'http://soprimaries.charcoal-se.org', 'https://soprimaries.charcoal-se.org']
 end
