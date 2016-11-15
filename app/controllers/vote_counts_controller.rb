@@ -3,6 +3,7 @@ class VoteCountsController < ApplicationController
     @users = User.order('current_score DESC')
   end
   def graph
+    render layout: "graph"
   end
   def update
     users = User.select('id, current_score').order('current_score DESC')
