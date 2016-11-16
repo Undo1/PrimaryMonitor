@@ -1,3 +1,3 @@
 <%= line_chart User.order('current_score desc').all.map { |user|
   { name: user.display_name, data: user.vote_counts.pluck(:created_at, :score).to_h }
-}, height: "100%" %>
+}, height: "100%", library: { chart: { zoomType: 'xy' } } %>
