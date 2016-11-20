@@ -1,3 +1,3 @@
-every '* * * * *' do
-  runner 'VoteCountsHelper.run_cycle'
-end
+#every '* * * * *' do
+#  runner 'VoteCountsHelper.run_cycle'
+#end
