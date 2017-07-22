@@ -12,7 +12,7 @@ module VoteCountsHelper
   end
 
   def self.fetch_votes
-    url = 'http://stackoverflow.com/election/8?tab=primary&purpose=undosprimarymonitor'
+    url = 'http://stackoverflow.com/election/9?tab=primary&purpose=undosprimarymonitor'
 
     begin
       file = open(url)
