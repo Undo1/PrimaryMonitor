@@ -10,4 +10,9 @@ class VoteCountsController < ApplicationController
     hash = Hash[users.map {|user| [user.id, user.current_score]}]
     render json: hash
   end
+  def update_api
+    users = User.select('link, current_score')
+    hash = Hash[users.map {|user| [user.user_id, user.current_score]}]
+    render json: hash
+  end
 end
