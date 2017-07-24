@@ -12,6 +12,11 @@ module VoteCountsHelper
   end
 
   def self.fetch_votes
+    if Time.now.utc < "2017-07-24 20:00:00Z".to_time
+      Rails.logger.info "Primary hasn't started yet. #{Time.now.utc} < '2017-07-24 20:00:00 UTC'"
+      return true
+    end
+
     url = 'http://stackoverflow.com/election/9?tab=primary&purpose=undosprimarymonitor'
 
     begin
