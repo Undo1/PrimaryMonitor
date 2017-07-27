@@ -27,6 +27,16 @@ $ ->
       $.each data, (user_id, current_score) ->
         element = $("#" + user_id + " .current-score")
         element.text current_score
+        delta = $("#" + user_id + " .delta")
+        user_index = $("tr").index($("#" + user_id))
+        if user_index == 0
+          next_score = parseInt($($("tr")[1]).find(".delta").text(), 10)
+          continue if isNaN(next_score)
+          delta.text 'Leading by ' + (parseInt(delta.text(), 10) - next_score)
+        else
+          prev_score = parseInt($($("tr")[user_index - 1]).find(".delta").text(), 10)
+          continue if isNaN(prev_score)
+          delta.text prev_score - parseInt(delta.text(), 10)
       rows = ($("table").find('tr').sort (a, b) ->
         current_score_a = $(a).find(".current-score").text()
         current_score_b = $(b).find(".current-score").text()
