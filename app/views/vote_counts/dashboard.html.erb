@@ -3,7 +3,6 @@
     <th>#</th>
     <th>User</th>
     <th>Current Score</th>
-    <th>Delta<th>
     <th>Last Change</th>
     <th>Accum. Change (<a href="#" class="reset_accum_total">reset</a>)</th>
   </tr>
@@ -18,13 +17,6 @@
         </td>
         <td class="current-score">
           <%= user.current_score %>
-        </td>
-        <td class="delta">
-          <% if index == 0 %>
-            Leading by <%= user.current_score - @users[index + 1].current_score %>
-          <% else %>
-            <%= @users[index - 1].current_score - user.current_score %>
-          <% end %>
         </td>
         <td class="last-change">0</td>
         <td class="accum-change">0</td>
