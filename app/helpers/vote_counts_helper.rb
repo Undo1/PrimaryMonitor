@@ -4,10 +4,10 @@ module VoteCountsHelper
   ActiveRecord::Import.require_adapter('sqlite')
 
   def self.run_cycle
-    12.times do
+    6.times do
       result = VoteCountsHelper.fetch_votes
       break if !result
-      sleep 5
+      sleep 10
     end
   end
 
