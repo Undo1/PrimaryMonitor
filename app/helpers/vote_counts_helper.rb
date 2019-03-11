@@ -4,20 +4,20 @@ module VoteCountsHelper
   ActiveRecord::Import.require_adapter('sqlite')
 
   def self.run_cycle
-    6.times do
+    12.times do
       result = VoteCountsHelper.fetch_votes
       break if !result
-      sleep 10
+      sleep 5
     end
   end
 
   def self.fetch_votes
-    if Time.now.utc < "2018-3-19 20:00:00Z".to_time
-      Rails.logger.info "Primary hasn't started yet. #{Time.now.utc} < '2018-3-19 20:00:00 UTC'"
+    if Time.now.utc < "2019-3-11 20:00:00Z".to_time
+      Rails.logger.info "Primary hasn't started yet. #{Time.now.utc} < '2019-3-11 20:00:00 UTC'"
       return true
     end
 
-    url = 'http://stackoverflow.com/election/10?tab=primary&purpose=undosprimarymonitor'
+    url = 'http://stackoverflow.com/election/11?tab=primary&purpose=undosprimarymonitor'
 
     begin
       file = open(url)
