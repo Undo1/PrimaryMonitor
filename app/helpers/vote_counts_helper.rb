@@ -25,8 +25,8 @@ module VoteCountsHelper
 
       vote_counts = []
 
-      doc.css(".vote-count-post").each do |vote_count|
-        nomination_post = vote_count.parent.parent.parent.parent
+      doc.css(".js-vote-count").each do |vote_count|
+        nomination_post = vote_count.parent.parent.parent
 
         username_link = nomination_post.css(".user-details a").first
         username = username_link.content
